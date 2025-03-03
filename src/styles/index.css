@@ -1,3 +1,7 @@
+/* Importamos la fuente manuscrita */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -5,47 +9,97 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
   }
   
+  /* Contenedor principal */
   .todo-container {
     text-align: center;
   }
-  
+
+  /* Título "TAREAS" */
   .title {
     font-size: 80px;
     color: rgba(175, 47, 47, 0.15);
     margin-bottom: 20px;
+    font-weight: 100;
+    font-family: Arial, sans-serif; 
   }
   
+  /* Caja del Post-It */
   .todo-box {
-    background: white;
+    background: #fdf0b5; /* Color amarillo suave como Post-It */
     padding: 20px;
     width: 400px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    border-radius: 0px;
+    box-shadow: 
+      4px 4px 10px rgba(0, 0, 0, 0.2), 
+      0 10px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform: rotate(-0.4deg); /* Giro para parecer un Post-It pegado */
   }
   
+  /* Varias hojas debajo */
+  .todo-box::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fdf0b7;
+    border-radius: 0 60px 0 0 ; 
+    left: 0;
+    top: 5px;
+    z-index: -1;
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.15),
+      0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Efecto de esquina doblada */
+.todo-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(225deg, transparent 50%, #eedc8f 50%);
+  transform: rotate(0deg);
+  border-top-right-radius: 0;
+}
+  
+  /* Input */
   .todo-input {
     width: 100%;
     padding: 10px;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     outline: none;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+    font-family: 'Patrick Hand', cursive; 
   }
   
+  /* Lista de tareas */
   .todo-list {
     list-style: none;
     padding: 0;
     margin: 10px 0;
   }
   
+  /* Cada tarea individual */
   .todo-item {
     display: flex;
     justify-content: space-between;
     padding: 12px;
-    border-bottom: 1px solid #eee;
-    font-size: 18px;
+    font-size: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff5b3; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Patrick Hand', cursive; 
   }
   
+  /* Botón eliminar */
   .delete-btn {
     background: none;
     border: none;
@@ -58,10 +112,11 @@ body {
     color: #af5b5e;
   }
   
+  /* Footer */
   .footer {
     font-size: 14px;
     color: gray;
     text-align: left;
     padding: 10px 0;
+    font-family: 'Patrick Hand', cursive; 
   }
-  
