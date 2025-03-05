@@ -3,59 +3,63 @@
 
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+  font-family: Arial, sans-serif;
+  background: url(https://static.vecteezy.com/system/resources/previews/013/947/137/non_2x/background-of-brown-cork-board-texture-close-up-photo.jpg); /* Imagen de corcho */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
   
   /* Contenedor principal */
-  .todo-container {
-    text-align: center;
-  }
+.todo-container {
+  text-align: center;
+}
 
-  /* Título "TAREAS" */
-  .title {
-    font-size: 80px;
-    color: rgba(175, 47, 47, 0.15);
-    margin-bottom: 20px;
-    font-weight: 100;
-    font-family: Arial, sans-serif; 
-  }
-  
-  /* Caja del Post-It */
-  .todo-box {
-    background: #fdf0b5; /* Color amarillo suave como Post-It */
-    padding: 20px;
-    width: 400px;
-    border-radius: 0px;
-    box-shadow: 
-      4px 4px 10px rgba(0, 0, 0, 0.2), 
-      0 10px 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transform: rotate(-0.4deg); /* Giro para parecer un Post-It pegado */
-  }
-  
-  /* Varias hojas debajo */
-  .todo-box::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #fdf0b7;
-    border-radius: 0 60px 0 0 ; 
-    left: 0;
-    top: 5px;
-    z-index: -1;
-    box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.15),
-      0 10px 20px rgba(0, 0, 0, 0.05);
-  }
-  
-  /* Efecto de esquina doblada */
+/* Título "TAREAS" */
+.title {
+  font-size: 80px;
+  color: rgb(12, 44, 184);
+  background-color: rgba(163, 163, 159, 0.432);
+  margin-bottom: 20px;
+  font-weight: 100;
+  font-family: 'Patrick Hand', cursive; 
+}
+
+/* Caja del Post-It */
+.todo-box {
+  background: #fdf0b5; /* Color amarillo suave como Post-It */
+  padding: 20px;
+  width: 400px;
+  border-radius: 0px;
+  box-shadow: 
+    4px 4px 10px rgba(0, 0, 0, 0.2), 
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: rotate(-0.4deg); /* Giro para parecer un Post-It pegado */
+}
+
+/* Varias hojas debajo */
+.todo-box::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fdf0b7;
+  border-radius: 0 60px 0 0 ; 
+  left: 0;
+  top: 5px;
+  z-index: -1;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto de esquina doblada */
 .todo-box::before {
   content: "";
   position: absolute;
@@ -67,56 +71,71 @@ body {
   transform: rotate(0deg);
   border-top-right-radius: 0;
 }
-  
-  /* Input */
-  .todo-input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    font-size: 20px;
-    outline: none;
-    background: rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.05);
-    font-family: 'Patrick Hand', cursive; 
-  }
-  
-  /* Lista de tareas */
-  .todo-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-  }
-  
-  /* Cada tarea individual */
-  .todo-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    font-size: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    background: #fff5b3; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    font-family: 'Patrick Hand', cursive; 
-  }
-  
-  /* Botón eliminar */
-  .delete-btn {
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: #cc9a9a;
-    cursor: pointer;
-  }
-  
-  .delete-btn:hover {
-    color: #af5b5e;
-  }
-  
-  /* Footer */
-  .footer {
-    font-size: 14px;
-    color: gray;
-    text-align: left;
-    padding: 10px 0;
-    font-family: 'Patrick Hand', cursive; 
-  }
+
+/* Chincheta en la esquina superior izquierda */
+.todo-box::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  border: 2px solid darkred;
+}
+
+/* Input */
+.todo-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  font-family: 'Patrick Hand', cursive; 
+}
+
+/* Lista de tareas */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+/* Cada tarea individual */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff5b3; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Patrick Hand', cursive; 
+}
+
+/* Botón eliminar */
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #cc9a9a;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: #af5b5e;
+}
+
+/* Footer */
+.footer {
+  font-size: 14px;
+  color: gray;
+  text-align: left;
+  padding: 10px 0;
+  font-family: 'Patrick Hand', cursive; 
+}
