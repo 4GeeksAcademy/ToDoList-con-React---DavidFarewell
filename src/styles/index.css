@@ -4,7 +4,7 @@
 /* Estilos generales */
 body {
   font-family: Arial, sans-serif;
-  background: url(https://static.vecteezy.com/system/resources/previews/013/947/137/non_2x/background-of-brown-cork-board-texture-close-up-photo.jpg); /* Imagen de corcho */
+  background: url('https://static.vecteezy.com/system/resources/previews/013/947/137/non_2x/background-of-brown-cork-board-texture-close-up-photo.jpg'); /* Imagen de corcho */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -13,129 +13,181 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-}
-  
-  /* Contenedor principal */
-.todo-container {
-  text-align: center;
+  flex-direction: column;
 }
 
-/* Título "TAREAS" */
-.title {
-  font-size: 80px;
-  color: rgb(12, 44, 184);
-  background-color: rgba(163, 163, 159, 0.432);
-  margin-bottom: 20px;
-  font-weight: 100;
-  font-family: 'Patrick Hand', cursive; 
+/* Pegatina de "TAREAS" (centrado sobre el Post-it) */
+.title-container {
+  position: relative;
+  display: inline-block;
+  background: #fdfdfd; /* Color blanco como pegatina */
+  padding: 10px 40px;
+  font-size: 50px;
+  color: #333;
+  font-weight: bold;
+  font-family: 'Patrick Hand', cursive;
+  transform: rotate(-3deg); /* Inclinación ligera */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: -30px;
+}
+
+/* Simulación de cinta adhesiva transparente */
+.title-container::before,
+.title-container::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  top: -8px;
+  left: 20px;
+  transform: rotate(-5deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title-container::after {
+  left: auto;
+  right: 20px;
+  transform: rotate(5deg);
 }
 
 /* Caja del Post-It */
 .todo-box {
-  background: #fdf0b5; /* Color amarillo suave como Post-It */
+  background: #fdf0b5; /* Color amarillo Post-It */
   padding: 20px;
   width: 400px;
   border-radius: 0px;
   box-shadow: 
-    4px 4px 10px rgba(0, 0, 0, 0.2), 
+    10px 4px 20px rgba(0, 0, 0, 0.2), 
     0 10px 20px rgba(0, 0, 0, 0.1);
   position: relative;
-  transform: rotate(-0.4deg); /* Giro para parecer un Post-It pegado */
+  transform: rotate(-0.4deg);
+  margin-top: 40px;
 }
 
-/* Varias hojas debajo */
-.todo-box::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #fdf0b7;
-  border-radius: 0 60px 0 0 ; 
-  left: 0;
-  top: 5px;
-  z-index: -1;
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    0 10px 20px rgba(0, 0, 0, 0.05);
-}
-
-/* Efecto de esquina doblada */
-.todo-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(225deg, transparent 50%, #eedc8f 50%);
-  transform: rotate(0deg);
-  border-top-right-radius: 0;
-}
-
-/* Chincheta en la esquina superior izquierda */
-.todo-box::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: -10px;
-  width: 30px;
-  height: 30px;
-  background: red;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-  border: 2px solid darkred;
-}
-
-/* Input */
+/* ✅ Input que parece escrito a mano en el Post-It */
 .todo-input {
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   border: none;
   font-size: 20px;
   outline: none;
-  background: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.05);
-  font-family: 'Patrick Hand', cursive; 
+  background: transparent;
+  font-family: 'Patrick Hand', cursive;
+  text-align: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  color: #000;
 }
 
-/* Lista de tareas */
+.todo-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-style: italic;
+}
+
+/* Estilos para la lista de tareas */
 .todo-list {
   list-style: none;
   padding: 0;
   margin: 10px 0;
 }
 
-/* Cada tarea individual */
+/* ✅ Asegura que los íconos estén alineados correctamente */
 .todo-item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 12px;
   font-size: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background: #fff5b3; 
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: 'Patrick Hand', cursive; 
+  font-family: 'Patrick Hand', cursive;
+  transition: background 0.3s;
+  position: relative;
+  word-wrap: break-word;
+  min-height: 50px;
 }
 
-/* Botón eliminar */
-.delete-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #cc9a9a;
+/* ✅ Texto con ellipsis si es muy largo */
+.texto-tarea {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ✅ Cuando la tarea está completada, aparece en gris tenue */
+.todo-item.completada {
+  background: #e0e0e0 !important;
+  text-decoration: line-through;
+  color: #9a9a9a;
+}
+
+/* ✅ Tarea importante (solo cambia color, no cambia orden) */
+.todo-item.importante {
+  background: #fe7575;
+  border-left: 5px solid #fd0000;
+}
+
+/* ✅ Tarea en ejecución (activa) → Se mueve a la primera posición */
+.todo-item.activa {
+  background: #a2ff9a;
+  border-left: 5px solid #15ff00;
+  font-weight: bold;
+  order: -1;
+}
+
+/* ✅ Contenedor de los botones alineados */
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+}
+
+/* ✅ Ajustar checkbox */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
-.delete-btn:hover {
-  color: #af5b5e;
+/* ✅ Botones de acción */
+.important-btn, .active-btn, .delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
 }
 
-/* Footer */
+/* ✅ Estilos específicos para cada botón */
+.important-btn { color: #000000; }
+.important-btn:hover { color: #b90000; }
+.active-btn { color: #7c7c7c; }
+.active-btn:hover { color: #15ff00; }
+.delete-btn { color: #cc9a9a; }
+.delete-btn:hover { color: #af5b5e; }
+
+/* ✅ Deshabilitar botones si la tarea está completada */
+.important-btn:disabled, .active-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ✅ Footer */
 .footer {
   font-size: 14px;
   color: gray;
   text-align: left;
   padding: 10px 0;
-  font-family: 'Patrick Hand', cursive; 
+  font-family: 'Patrick Hand', cursive;
 }
