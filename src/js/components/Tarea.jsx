@@ -1,37 +1,21 @@
 import React from 'react';
 
-const Tarea = ({ tarea, removeTarea, toggleCompletada, toggleImportante, toggleActiva }) => { 
+const Tarea = ({ tarea, removeTarea, updateTarea }) => { 
   return (
-    <li className={`todo-item 
-      ${tarea.completada ? "completada" : ""} 
-      ${tarea.importante ? "importante" : ""} 
-      ${tarea.activa ? "activa" : ""}`
-    }> 
-      {/* Checkbox */}
+    <li className={`todo-item ${tarea.is_done ? "completada" : ""}`}> 
+      {/* Checkbox para marcar como completada */}
       <input 
         type="checkbox" 
         className="checkbox"
-        checked={tarea.completada}
-        onChange={() => toggleCompletada(tarea.id)}
+        checked={tarea.is_done}
+        onChange={() => updateTarea(tarea.id, { ...tarea, is_done: !tarea.is_done })}
       />
 
       {/* Texto de la tarea */}
-      <span className="texto-tarea" title={tarea.texto}>{tarea.texto}</span>
+      <span className="texto-tarea" title={tarea.label}>{tarea.label}</span>
 
-      {/* Contenedor de iconos alineados */}
-      <div className="icon-container">
-        <button className="important-btn" 
-          onClick={() => toggleImportante(tarea.id)} 
-          disabled={tarea.completada}> ！
-        </button> 
-
-        <button className="active-btn" 
-          onClick={() => toggleActiva(tarea.id)} 
-          disabled={tarea.completada}> ▶
-        </button> 
-
-        <button className="delete-btn" onClick={() => removeTarea(tarea.id)}>✖</button> 
-      </div>
+      {/* Botón para eliminar */}
+      <button className="delete-btn" onClick={() => removeTarea(tarea.id)}>✖</button> 
     </li>
   );
 };

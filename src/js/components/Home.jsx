@@ -1,65 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 
+const API_URL = "https://playground.4geeks.com/todo";
+const USERNAME = "davidfarewell"; // Nombre de usuario en la API
+
 const Home = () => {
-  const [lista, setLista] = useState([]);
-  const [nuevaTarea, setNuevaTarea] = useState('');
+  const [lista, setLista] = useState([]); // Lista de tareas
+  const [nuevaTarea, setNuevaTarea] = useState("");
 
-  const handleInputChange = (e) => {
-    setNuevaTarea(e.target.value);
+  // Obtener las tareas del usuario
+  const getTasks = () => {
+    fetch(`${API_URL}/users/${USERNAME}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log("Tareas obtenidas:", data.todos);
+        setLista(Array.isArray(data.todos) ? data.todos : []);
+      })
+      .catch(error => console.log("Error al obtener tareas:", error));
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "*") { 
-      alert("No se puede agregar asteriscos");
-      e.preventDefault();
-    }
+  // Crear un usuario si no existe
+  const createUser = () => {
+    fetch(`${API_URL}/users/${USERNAME}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(data => console.log("Usuario creado:", data))
+      .catch(error => console.log("Error al crear usuario:", error));
   };
 
+  // Agregar una tarea nueva
   const addTarea = (e) => {
     e.preventDefault();
-    if (nuevaTarea.trim()) {
-      setLista(prevLista => [
-        ...prevLista,
-        { 
-          id: Date.now(), 
-          texto: nuevaTarea, 
-          completada: false, 
-          importante: false, 
-          activa: false
-        }
-      ]);
-      setNuevaTarea('');
-    }
+    if (nuevaTarea.trim() === "") return;
+
+    fetch(`${API_URL}/todos/${USERNAME}`, {
+      method: "POST",
+      body: JSON.stringify({ label: nuevaTarea, is_done: false }),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(() => {
+        setNuevaTarea(""); // Limpia el input
+        getTasks(); // Actualiza la lista
+      })
+      .catch(error => console.log("Error al agregar tarea:", error));
   };
 
-  const toggleCompletada = (id) => {
-    setLista(prevLista => 
-      prevLista.map(tarea => 
-        tarea.id === id ? { ...tarea, completada: !tarea.completada, importante: false, activa: false } : tarea
-      )
-    );
+  // Actualizar estado de tarea 
+  const updateTarea = (id, updatedTask) => {
+    fetch(`${API_URL}/todos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedTask),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(() => getTasks())
+      .catch(error => console.log("Error al actualizar tarea:", error));
   };
 
-  const toggleImportante = (id) => {
-    setLista(prevLista => 
-      prevLista.map(tarea => 
-        tarea.id === id && !tarea.completada ? { ...tarea, importante: !tarea.importante } : tarea
-      )
-    );
-  };
-
-  const toggleActiva = (id) => {
-    setLista(prevLista => {
-      return prevLista.map(tarea => 
-        tarea.id === id && !tarea.completada ? { ...tarea, activa: !tarea.activa } : tarea
-      ).sort((a, b) => b.activa - a.activa); // La activa siempre primera
-    });
-  };
-
+  // Eliminar una tarea
   const removeTarea = (id) => {
-    setLista(prevLista => prevLista.filter(tarea => tarea.id !== id));
+    fetch(`${API_URL}/todos/${id}`, { method: "DELETE" })
+      .then(() => getTasks())
+      .catch(error => console.log("Error al eliminar tarea:", error));
   };
+
+  // Crear el usuario y obtener las tareas al cargar la página
+  useEffect(() => {
+    createUser();
+    getTasks();
+  }, []);
 
   return (
     <div className="todo-container">
@@ -70,19 +82,16 @@ const Home = () => {
             type="text" 
             className="todo-input"
             value={nuevaTarea} 
-            onChange={handleInputChange} 
-            onKeyDown={handleKeyDown} 
-            placeholder="Escribe aquí tu tarea:"
+            onChange={(e) => setNuevaTarea(e.target.value)}
+            placeholder="Escribe aquí tu nueva tarea"
           />
         </form>
         <TodoList 
           lista={lista} 
           removeTarea={removeTarea} 
-          toggleCompletada={toggleCompletada} 
-          toggleImportante={toggleImportante}
-          toggleActiva={toggleActiva}
+          updateTarea={updateTarea} 
         />
-        <footer className="footer">{lista.length} Tareas Pendientes </footer>
+        <footer className="footer">{lista.length} Tareas Pendientes</footer>
       </div>
     </div>
   );

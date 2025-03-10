@@ -1,7 +1,7 @@
 import React from 'react';
 import Tarea from './Tarea'; 
 
-const TodoList = ({ lista, removeTarea, toggleCompletada, toggleImportante, toggleActiva }) => {
+const TodoList = ({ lista, removeTarea, updateTarea }) => {
   return (
     <ul className="todo-list">
       {lista.length > 0 ? (
@@ -10,13 +10,11 @@ const TodoList = ({ lista, removeTarea, toggleCompletada, toggleImportante, togg
             key={tarea.id} 
             tarea={tarea} 
             removeTarea={removeTarea} 
-            toggleCompletada={toggleCompletada} 
-            toggleImportante={toggleImportante}
-            toggleActiva={toggleActiva}
+            updateTarea={updateTarea} 
           />
         ))
       ) : (
-        <p className="empty">-Tus tareas aparecerán aquí-</p>
+        <p className="empty">- No hay tareas -</p>
       )}
     </ul>
   );
