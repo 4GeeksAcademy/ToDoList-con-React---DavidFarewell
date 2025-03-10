@@ -3,7 +3,7 @@ import React from 'react';
 const Tarea = ({ tarea, removeTarea, updateTarea }) => { 
   return (
     <li className={`todo-item ${tarea.is_done ? "completada" : ""}`}> 
-      {/* Checkbox para marcar como completada */}
+      {/* Checkbox para marcar completado */}
       <input 
         type="checkbox" 
         className="checkbox"
@@ -14,7 +14,7 @@ const Tarea = ({ tarea, removeTarea, updateTarea }) => {
       {/* Texto de la tarea */}
       <span className="texto-tarea" title={tarea.label}>{tarea.label}</span>
 
-      {/* Botón para eliminar */}
+      {/* Botón de eliminar */}
       <button className="delete-btn" onClick={() => removeTarea(tarea.id)}>✖</button> 
     </li>
   );

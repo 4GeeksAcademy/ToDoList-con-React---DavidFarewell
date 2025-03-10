@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 
 const API_URL = "https://playground.4geeks.com/todo";
-const USERNAME = "davidfarewell"; // Nombre de usuario en la API
+const USERNAME = "davidfarewell"; // Nombre de usuario en la API de 4Geeks
 
 const Home = () => {
   const [lista, setLista] = useState([]); // Lista de tareas
@@ -42,7 +42,7 @@ const Home = () => {
     })
       .then(response => response.json())
       .then(() => {
-        setNuevaTarea(""); // Limpia el input
+        setNuevaTarea(""); // Limpiar input
         getTasks(); // Actualiza la lista
       })
       .catch(error => console.log("Error al agregar tarea:", error));
