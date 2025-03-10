@@ -53,7 +53,7 @@ body {
   transform: rotate(5deg);
 }
 
-/* Caja del Post-It */
+/*Caja del Post-It */
 .todo-box {
   background: #fdf0b5; /* Color amarillo Post-It */
   padding: 20px;
@@ -67,7 +67,7 @@ body {
   margin-top: 40px;
 }
 
-/* ✅ Input que parece escrito a mano en el Post-It */
+/*Input que parece escrito a mano en el Post-It */
 .todo-input {
   width: 100%;
   padding: 10px 0;
@@ -86,14 +86,14 @@ body {
   font-style: italic;
 }
 
-/* Estilos para la lista de tareas */
+/*Estilos para la lista de tareas */
 .todo-list {
   list-style: none;
   padding: 0;
   margin: 10px 0;
 }
 
-/* ✅ Asegura que los íconos estén alineados correctamente */
+/*Asegura que los íconos estén alineados correctamente */
 .todo-item {
   display: flex;
   align-items: center;
@@ -110,7 +110,7 @@ body {
   min-height: 50px;
 }
 
-/* ✅ Texto con ellipsis si es muy largo */
+/*Texto con ellipsis si es muy largo */
 .texto-tarea {
   flex-grow: 1;
   white-space: nowrap;
@@ -119,20 +119,20 @@ body {
   max-width: 200px;
 }
 
-/* ✅ Cuando la tarea está completada, aparece en gris tenue */
+/*Cuando la tarea está completada, aparece en gris tenue */
 .todo-item.completada {
   background: #e0e0e0 !important;
   text-decoration: line-through;
   color: #9a9a9a;
 }
 
-/* ✅ Tarea importante (solo cambia color, no cambia orden) */
+/*Tarea importante (solo cambia color, no cambia orden) */
 .todo-item.importante {
   background: #fe7575;
   border-left: 5px solid #fd0000;
 }
 
-/* ✅ Tarea en ejecución (activa) → Se mueve a la primera posición */
+/*Tarea en ejecución (activa) → Se mueve a la primera posición */
 .todo-item.activa {
   background: #a2ff9a;
   border-left: 5px solid #15ff00;
@@ -140,7 +140,7 @@ body {
   order: -1;
 }
 
-/* ✅ Contenedor de los botones alineados */
+/*Contenedor de los botones alineados */
 .icon-container {
   display: flex;
   align-items: center;
@@ -148,7 +148,7 @@ body {
   position: relative;
 }
 
-/* ✅ Ajustar checkbox */
+/*Ajustar checkbox */
 .checkbox {
   width: 20px;
   height: 20px;
@@ -156,7 +156,7 @@ body {
   cursor: pointer;
 }
 
-/* ✅ Botones de acción */
+/*Botones de acción */
 .important-btn, .active-btn, .delete-btn {
   background: none;
   border: none;
@@ -169,7 +169,7 @@ body {
   height: 25px;
 }
 
-/* ✅ Estilos específicos para cada botón */
+/*Estilos específicos para cada botón */
 .important-btn { color: #000000; }
 .important-btn:hover { color: #b90000; }
 .active-btn { color: #7c7c7c; }
@@ -177,13 +177,13 @@ body {
 .delete-btn { color: #cc9a9a; }
 .delete-btn:hover { color: #af5b5e; }
 
-/* ✅ Deshabilitar botones si la tarea está completada */
+/*Deshabilitar botones si la tarea está completada */
 .important-btn:disabled, .active-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* ✅ Footer */
+/*Footer */
 .footer {
   font-size: 14px;
   color: gray;
