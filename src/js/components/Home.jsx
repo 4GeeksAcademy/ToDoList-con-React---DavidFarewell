@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 
-const API_URL = "https://playground.4geeks.com/todo";
-const USERNAME = "davidfarewell"; // Nombre de usuario en la API de 4Geeks
 
 const Home = () => {
+
+  const API_URL = "https://playground.4geeks.com/todo";
+  const USERNAME = "davidfarewell"; // Nombre de usuario en la API 
+
   const [lista, setLista] = useState([]); // Lista de tareas
   const [nuevaTarea, setNuevaTarea] = useState("");
 
