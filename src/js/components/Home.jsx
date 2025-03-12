@@ -16,7 +16,7 @@ const Home = () => {
       .then(response => response.json())
       .then(data => {
         console.log("Tareas obtenidas:", data.todos);
-        setLista(Array.isArray(data.todos) ? data.todos : []);
+        setLista(data.todos);
       })
       .catch(error => console.log("Error al obtener tareas:", error));
   };
@@ -33,7 +33,8 @@ const Home = () => {
   };
 
   // Agregar una tarea nueva
-  const addTarea = (e) => {
+  
+  const addTarea = (e) => {    // set loading = true (Para que no haya el problema de escribir demasiado rapido)
     e.preventDefault();
     if (nuevaTarea.trim() === "") return;
 
@@ -43,9 +44,10 @@ const Home = () => {
       headers: { "Content-Type": "application/json" }
     })
       .then(response => response.json())
-      .then(() => {
+      .then((data) => { // Set loading =false (Para que no haya el problema de escribir demasiado rapido)
         setNuevaTarea(""); // Limpiar input
-        getTasks(); // Actualiza la lista
+       //getTasks(); // Actualiza la lista
+        setLista([...lista,data]);
       })
       .catch(error => console.log("Error al agregar tarea:", error));
   };
@@ -86,6 +88,7 @@ const Home = () => {
             value={nuevaTarea} 
             onChange={(e) => setNuevaTarea(e.target.value)}
             placeholder="Escribe aquí tu nueva tarea"
+            //disabled
           />
         </form>
         <TodoList 
